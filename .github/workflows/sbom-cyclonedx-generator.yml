@@ -9,4 +9,8 @@ jobs:
         with:
           node-version: '16'
       - run: npm i -g @cyclonedx/cyclonedx-npm
+
+      - working-directory: ./fixtures/npm
+        run: npm i
+
       - run: npx cyclonedx-npm fixtures/npm/package.json
