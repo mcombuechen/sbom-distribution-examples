@@ -1,0 +1,13 @@
+name: NPM CycloneDX JSON generator
+description: Generate a SBOM of type CycloneDX JSON out of a NPM project
+on: [push, release]
+jobs:
+  npm-cdx-generation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - run: npm i -g @cyclonedx/cyclonedx-npm
+      - run: npx cyclonedx-npm fixtures/npm
