@@ -34,4 +34,7 @@ jobs:
   inspect-env:
     runs-on: ubuntu-latest
     steps:
-      - run: env
+      - name: Read env vars
+        run: env
+      - name: Read GitHub event
+        run: cat $GITHUB_EVENT_PATH
