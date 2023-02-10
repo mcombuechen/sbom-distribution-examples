@@ -18,5 +18,5 @@ jobs:
       - name: store produced SBOM
         uses: actions/upload-artifact@v3
         with:
-          name: sboms
+          name: sbom.cdx.json
           path: sbom.cdx.json
