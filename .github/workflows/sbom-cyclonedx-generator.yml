@@ -9,4 +9,4 @@ jobs:
         with:
           node-version: '16'
       - run: npm i -g @cyclonedx/cyclonedx-npm
-      - run: npx cyclonedx-npm fixtures/npm
+      - run: npx cyclonedx-npm fixtures/npm/package.json
