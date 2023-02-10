@@ -1,0 +1,24 @@
+{
+  "name": "sbom-distribution-examples",
+  "version": "1.0.0",
+  "description": "A test repository to play around with SBOM ditribution.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcombuechen/sbom-distribution-examples.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mcombuechen/sbom-distribution-examples/issues"
+  },
+  "homepage": "https://github.com/mcombuechen/sbom-distribution-examples#readme",
+  "dependencies": {
+    "debug": "^4.3.4",
+    "lodash": "^4.17.21"
+  }
+}

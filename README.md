@@ -1,2 +1,3 @@
-# super-awesome-test-lib
-Just a sample project to play around with
+# SBOM Distribution Examples
+
+A test repository to play around with SBOM ditribution.
