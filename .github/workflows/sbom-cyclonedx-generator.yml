@@ -13,4 +13,10 @@ jobs:
       - working-directory: ./fixtures/npm
         run: npm i
 
-      - run: npx cyclonedx-npm fixtures/npm/package.json
+      - run: npx cyclonedx-npm fixtures/npm/package.json > sbom.cdx.json
+
+      - name: store produced SBOM
+        uses: actions/upload-artifact@v3
+        with:
+          name: sboms
+          path: sbom.cdx.json
