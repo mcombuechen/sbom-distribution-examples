@@ -1,0 +1,28 @@
+name: 'NPM CycloneDX SBOM Generator'
+description: 'Generate a CycloneDX SBOM document for an NPM project'
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Node environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+    - name: Install CycloneDX NPM plugin
+      shell: bash
+      run: npm install -g @cyclonedx/cyclonedx-npm
+
+    - name: Install NPM dependencies
+      working-directory: ./fixtures/npm
+      shell: bash
+      run: npm install
+
+    - name: Generate CycloneDX document
+      working-directory: ./fixtures/npm
+      shell: bash
+      run: cyclonedx-npm > sbom.cdx.json
+
+    - name: Store generated SBOM document
+      uses: actions/upload-artifact@v3
+      with:
+        name: sbom.cdx.json
+        path: ./fixtures/npm/sbom.cdx.json
