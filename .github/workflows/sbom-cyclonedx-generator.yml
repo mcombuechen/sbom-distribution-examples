@@ -1,5 +1,12 @@
 name: NPM CycloneDX JSON generator
-on: [push, release]
+
+on:
+  push: {}
+  release:
+    types:
+      - created
+      - published
+
 jobs:
   npm-cdx-generation:
     runs-on: ubuntu-latest
@@ -10,13 +17,24 @@ jobs:
           node-version: '16'
       - run: npm i -g @cyclonedx/cyclonedx-npm
 
-      - working-directory: ./fixtures/npm
+      - name: Install NPM dependencies
+        working-directory: ./fixtures/npm
         run: npm i
 
-      - run: npx cyclonedx-npm fixtures/npm/package.json > sbom.cdx.json
+      - name: Generate CycloneDX document
+        working-directory: ./fixtures/npm
+        run: npx cyclonedx-npm > sbom.cdx.json
 
-      - name: store produced SBOM
+      - name: Store produced SBOM
         uses: actions/upload-artifact@v3
         with:
           name: sbom.cdx.json
-          path: sbom.cdx.json
+          path: ./fixtures/npm/sbom.cdx.json
+
+  inspect-env:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Read env vars
+        run: env
+      - name: Read GitHub event
+        run: cat $GITHUB_EVENT_PATH
