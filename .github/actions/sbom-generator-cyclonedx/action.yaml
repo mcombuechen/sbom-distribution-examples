@@ -12,8 +12,16 @@ runs:
       shell: bash
       run: cyclonedx-npm > sbom.cdx.json
 
-    - name: Store generated SBOM document
+    - name: Upload generated SBOM document as artifact
       uses: actions/upload-artifact@v3
       with:
         name: sbom.cdx.json
         path: ./fixtures/npm/sbom.cdx.json
+
+    - name: Upload generated SBOM document as release asset
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: ./fixtures/npm/sbom.cdx.json
+        asset_name: sbom.cdx.json
+        tag: ${{ github.ref }}
