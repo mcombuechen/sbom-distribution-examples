@@ -6,16 +6,9 @@ on:
       - published
 
 jobs:
-  release:
+  publish-sbom:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out
-        uses: actions/checkout@v3
-      - name: Set up Node environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18'
-
       - name: Generate CycloneDX SBOM document
         uses: ./.github/actions/sbom-generator-cyclonedx
 
