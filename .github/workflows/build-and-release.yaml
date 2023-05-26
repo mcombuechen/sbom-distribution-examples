@@ -1,10 +1,10 @@
-name: Install dependencies
+name: Build and release
 
 on:
   push: {}
 
 jobs:
-  install-dependencies:
+  build-and-release:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
@@ -12,8 +12,13 @@ jobs:
       - name: Set up Node environment
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '18'
       - name: Install NPM dependencies
         working-directory: ./fixtures/npm
         shell: bash
         run: npm install
+      - name: Release
+        working-directory: ./fixtures/npm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npx semantic-release --branches=${{ github.ref }}
