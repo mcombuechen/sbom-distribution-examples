@@ -3,6 +3,14 @@ description: 'Generate a CycloneDX SBOM document for an NPM project'
 runs:
   using: 'composite'
   steps:
+    - name: Check out
+      uses: actions/checkout@v3
+
+    - name: Set up Node environment
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
     - name: Install CycloneDX NPM plugin
       shell: bash
       run: npm install -g @cyclonedx/cyclonedx-npm
