@@ -1,0 +1,19 @@
+name: Install dependencies
+
+on:
+  push: {}
+
+jobs:
+  install-dependencies:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v3
+      - name: Set up Node environment
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: Install NPM dependencies
+        working-directory: ./fixtures/npm
+        shell: bash
+        run: npm install
