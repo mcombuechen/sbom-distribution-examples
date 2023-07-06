@@ -30,3 +30,10 @@ jobs:
         run: env
       - name: Read GitHub event
         run: cat $GITHUB_EVENT_PATH
+
+  inspect-gh-context:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print context
+        shell: bash
+        run: echo ${{ toJSON(github) }}
