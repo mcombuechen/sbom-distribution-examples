@@ -16,6 +16,10 @@ runs:
       with:
         node-version: '18'
 
+    - name: Install NPM dependencies
+      shell: bash
+      run: npm install
+
     - name: Install CycloneDX NPM plugin
       shell: bash
       run: npm install -g @cyclonedx/cyclonedx-npm
