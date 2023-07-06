@@ -3,6 +3,10 @@ description: 'Generate a CycloneDX SBOM document for an NPM project'
 runs:
   using: 'composite'
   steps:
+    - name: Print release assets URL
+      shell: bash
+      run: echo ${{ github.event.release.assets_url }}
+
     - name: Set up Node environment
       uses: actions/setup-node@v3
       with:

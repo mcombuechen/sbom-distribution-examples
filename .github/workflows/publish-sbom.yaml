@@ -14,17 +14,9 @@ jobs:
       - name: Generate CycloneDX SBOM document
         uses: ./.github/actions/sbom-generator-cyclonedx
 
-  inspect-env:
+  inspect-release-assets-url:
     runs-on: ubuntu-latest
     steps:
-      - name: Read env vars
-        run: env
-      - name: Read GitHub event
-        run: cat $GITHUB_EVENT_PATH
-
-  inspect-gh-context:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print context
+      - name: Print release assets URL
         shell: bash
-        run: echo ${{ toJSON(github) }}
+        run: echo ${{ github.event.release.assets_url }}
