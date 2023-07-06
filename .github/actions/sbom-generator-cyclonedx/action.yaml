@@ -7,28 +7,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Print release assets URL
-      shell: bash
-      run: echo ${{ github.event.release.assets_url }}
-
-    - name: Set up Node environment
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-
-    - name: Install NPM dependencies
-      working-directory: ./fixtures/npm
-      shell: bash
-      run: npm install
-
-    - name: Install CycloneDX NPM plugin
-      shell: bash
-      run: npm install -g @cyclonedx/cyclonedx-npm
-
     - name: Generate CycloneDX document
       working-directory: ./fixtures/npm
       shell: bash
-      run: cyclonedx-npm > sbom.cdx.json
+      run: npx @cyclonedx/cyclonedx-npm > sbom.cdx.json
 
     - name: Upload generated SBOM document as artifact
       uses: actions/upload-artifact@v3
