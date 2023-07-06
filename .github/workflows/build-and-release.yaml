@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false
       - name: Set up Node environment
         uses: actions/setup-node@v3
         with:
@@ -20,5 +22,5 @@ jobs:
       - name: Release
         working-directory: ./fixtures/npm
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
         run: npx semantic-release
