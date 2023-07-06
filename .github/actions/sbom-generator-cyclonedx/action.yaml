@@ -1,5 +1,9 @@
 name: 'NPM CycloneDX SBOM Generator'
 description: 'Generate a CycloneDX SBOM document for an NPM project'
+inputs:
+  repo_token:
+    description: 'Token to push assets to release'
+    required: true
 runs:
   using: 'composite'
   steps:
@@ -30,7 +34,7 @@ runs:
     - name: Upload generated SBOM document as release asset
       uses: svenstaro/upload-release-action@v2
       with:
-        repo_token: ${{ secrets.BOT_TOKEN }}
+        repo_token: ${{ inputs.repo_token }}
         file: ./fixtures/npm/sbom.cdx.json
         asset_name: sbom.cdx.json
         tag: ${{ github.ref }}

@@ -13,6 +13,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Generate CycloneDX SBOM document
         uses: ./.github/actions/sbom-generator-cyclonedx
+        with:
+          repo_token: ${{ secrets.BOT_TOKEN }}
 
   inspect-release-assets-url:
     runs-on: ubuntu-latest
