@@ -7,15 +7,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
-    - name: Install generator
-      working-directory: ./fixtures/golang
-      shell: bash
-      run: go get github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest
-
     - name: Generate CycloneDX document
       working-directory: ./fixtures/golang
       shell: bash
-      run: cyclonedx-gomod mod -json=true -output sbom.cdx.json ./
+      run: go run github.com/CycloneDX/cyclonedx-gomod/cmd/cyclonedx-gomod@latest mod -json=true -output sbom.cdx.json ./
 
     - name: Upload generated SBOM document as artifact
       uses: actions/upload-artifact@v3
