@@ -20,6 +20,6 @@ jobs:
         shell: bash
         run: npm install
       - name: Generate CycloneDX SBOM document
-        uses: ./.github/actions/sbom-generator-cyclonedx
+        uses: ./.github/actions/sbom-generator-cyclonedx-npm
         with:
           repo_token: ${{ secrets.BOT_TOKEN }}
