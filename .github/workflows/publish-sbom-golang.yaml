@@ -9,7 +9,11 @@ jobs:
   publish-sbom:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-go@v4
+      - name: Check out
+        uses: actions/checkout@v3
+
+      - name: Set up Go environment
+        uses: actions/setup-go@v4
 
       - name: Generate CycloneDX SBOM document
         uses: ./.github/actions/sbom-generator-cyclonedx-golang
