@@ -7,6 +7,10 @@ inputs:
 runs:
   using: 'composite'
   steps:
+    - name: Set up Go environment
+      shell: bash
+      run: export PATH=$PATH:$(go env GOPATH)/bin
+
     - name: Generate CycloneDX document
       working-directory: ./fixtures/golang
       shell: bash
